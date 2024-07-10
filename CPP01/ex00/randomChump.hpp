@@ -1,0 +1,4 @@
+#ifndef RANDOMCHUMP_HPP
+#define RANDOMCHUMP_HPP
+
+#endif

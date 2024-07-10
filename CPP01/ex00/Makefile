@@ -1,7 +1,7 @@
-EXEC = PhoneBook
+EXEC = Zombie
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp
+SRCS = main.cpp Zombie.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXEC)
