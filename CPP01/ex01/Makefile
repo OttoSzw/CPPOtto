@@ -1,7 +1,7 @@
-EXEC = Zombie
+EXEC = ZombieHorde
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = main.cpp Zombie.cpp ZombieHorde.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXEC)
