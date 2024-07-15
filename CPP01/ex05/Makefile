@@ -1,7 +1,7 @@
-EXEC = FileReplace
+EXEC = Harl
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXEC)
