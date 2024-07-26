@@ -1,10 +1,62 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main()
 {
-	ClapTrap Instance("Otto");
+	ScavTrap Instance("Otto");
 
-	Instance.attack("Tom");
-	Instance.takeDamage(0);
-	Instance.beRepaired(2);
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+	Instance.attack("Theo");
+
+
+	Instance.guardGate();
+	return (0);
 }
