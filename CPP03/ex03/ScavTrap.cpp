@@ -6,7 +6,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->setEnergyPoints(50);
 	this->setAttackDamage(20);
 	this->setName(name);
-	std::cout << this->getName() << " Constructor Called" << std::endl;
+	std::cout << "ScavTrap " << this->getName() << " Constructor Called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy)

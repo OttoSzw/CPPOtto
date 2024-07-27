@@ -22,10 +22,13 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap& other)
 {
-	this->setName(other.getName());
-	this->setHitPoints(other.getHitPoints());
-	this->setEnergyPoints(other.getEnergyPoints());
-	this->setAttackDamage(other.getAttackDamage());
+	if (this != &other)
+	{
+		this->setName(other.getName());
+		this->setHitPoints(other.getHitPoints());
+		this->setEnergyPoints(other.getEnergyPoints());
+		this->setAttackDamage(other.getAttackDamage());
+	}
 	return (*this);
 }
 

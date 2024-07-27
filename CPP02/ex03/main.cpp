@@ -7,7 +7,7 @@ int main(void)
     Point triangleC(0, 10);
 
     // Points à tester
-    Point pointTest(5, 5);
+    Point pointTest(0, 0);
     Point pointTest1(10, 10);
     Point pointTest2(-1, 0);
 
