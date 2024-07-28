@@ -13,6 +13,10 @@ class Animal
 		Animal(const Animal& copy);
 		Animal &operator=(const Animal& ope);
 		~Animal();
+
+		std::string getType();
+		void	setType(std::string Type);
+		void	makeSound();
 };
 
 #endif

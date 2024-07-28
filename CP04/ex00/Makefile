@@ -1,7 +1,7 @@
 EXEC = Polymorphisme
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(EXEC)

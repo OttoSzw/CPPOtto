@@ -21,12 +21,13 @@ class ClapTrap {
 		~ClapTrap();
 
 		std::string getName() const;
-		void		setName(const std::string nom);
 		int			getHitPoints() const;
-		void		setHitPoints(const int hit);
 		int			getEnergyPoints() const;
-		void		setEnergyPoints(const int energy);
 		int			getAttackDamage() const;
+		
+		void		setName(const std::string nom);
+		void		setHitPoints(const int hit);
+		void		setEnergyPoints(const int energy);
 		void		setAttackDamage(const int attack);
 
 		void	attack(const std::string& target);
