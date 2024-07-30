@@ -1,15 +1,17 @@
-EXEC = Polymorphisme
+EXEC = NotWorkingMhh..
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp
-OBJS = $(SRCS:.cpp=.o)
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+OBJDIR = objs
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 
 all: $(EXEC)
 
 $(EXEC): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp
+	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
@@ -17,6 +19,7 @@ clean:
 
 fclean: clean
 	rm -f $(EXEC)
+	rm -rf $(OBJDIR)
 
 re: fclean all
 
