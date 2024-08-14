@@ -2,6 +2,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class GradeTooLowException : public std::runtime_error
 {
@@ -24,12 +27,16 @@ class Bureaucrat
 
 	public:
 		Bureaucrat(const std::string Name, int Grade);
+		Bureaucrat(const Bureaucrat& copy);
+		Bureaucrat	&operator=(const Bureaucrat& ope);
 		~Bureaucrat();
 
 		void	incrementGrade();
 		void	decrementGrade();
 		std::string const  	getName() const;
 		int					getGrade() const;
+		void	signForm(Form& form);
+
 		friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 };
 

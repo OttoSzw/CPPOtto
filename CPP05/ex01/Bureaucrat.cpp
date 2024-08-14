@@ -5,12 +5,26 @@ Bureaucrat::Bureaucrat(const std::string Name, int Grade) : name(Name), grade(Gr
 	std::cout << "Bureaucrat Constructor Called !" << std::endl;
 	if (grade > 150)
 	{
-		throw GradeTooLowException(); // Correction ici
+		throw GradeTooLowException();
 	}
 	if (grade < 1)
 	{
-		throw GradeTooHighException(); // Correction ici
+		throw GradeTooHighException();
 	}
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& copy)
+{
+	*this = copy;
+}
+
+Bureaucrat	&Bureaucrat::operator=(const Bureaucrat& ope)
+{
+	if (this != &ope)
+	{
+		this->grade = ope.grade;
+	}
+	return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
@@ -31,7 +45,7 @@ int Bureaucrat::getGrade() const
 void Bureaucrat::incrementGrade()
 {
 	if (++grade > 150)
-	{ // Correction ici
+	{
 		throw GradeTooLowException();
 	}
 }
@@ -39,9 +53,17 @@ void Bureaucrat::incrementGrade()
 void Bureaucrat::decrementGrade()
 {
 	if (--grade < 1)
-	{ // Correction ici
+	{
 		throw GradeTooHighException();
 	}
+}
+
+void	Bureaucrat::signForm(Form& form)
+{
+	if (form.getSignd() == 1)
+		std::cout << this->name << " signed " << form.getName() << std::endl;
+	else
+		std::cout << this->name << " couldn't signed " << form.getName() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
