@@ -1,13 +1,15 @@
 #include "Bureaucrat.hpp"
 #include "ShruberryCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat bob("Bob", 2);
-		Bureaucrat alice("Alice", 150);
-		Bureaucrat charlie("Charlie", 25);
+		Bureaucrat bob("Bob", 70);
+		Bureaucrat alice("Alice", 45);
+		Bureaucrat charlie("Charlie", 2);
 
 		std::cout << bob << std::endl;
 		bob.decrementGrade();
@@ -23,9 +25,13 @@ int main()
 		std::cout << std::endl;
 		std::cout << std::endl;
 
-		ShruberryCreationForm Instance;
+		ShruberryCreationForm Instance("home");
+		RobotomyRequestForm	  Man("b-281");
+		PresidentialPardonForm president("Otto");
 
-		Instance.beSigned(bob);
+		bob.executeForm(Instance);
+		alice.executeForm(Man);
+		charlie.executeForm(president);
 
 		std::cout << std::endl;
 		std::cout << std::endl;

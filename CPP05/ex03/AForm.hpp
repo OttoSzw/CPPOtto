@@ -38,11 +38,11 @@ class Form
 		Form(std::string Name, const int GradeN, const int GradeA);
 		Form(const Form &copy);
 		Form	&operator=(const Form &ope);
-		~Form();
 
 	public:
 
 
+		virtual ~Form();
 		std::string const	getName() const;
 		bool				getSignd();
 		void				setSignd();
