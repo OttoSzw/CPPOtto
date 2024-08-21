@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 enum e_type
 {
 	NONE = 0,
@@ -14,18 +15,17 @@ enum e_type
 
 class ScalarConverter
 {
-private:
-	ScalarConverter();
-	ScalarConverter(const ScalarConverter &copy);
-	ScalarConverter &operator=(const ScalarConverter &ope);
+	private:
 
-public:
-	~ScalarConverter();
-	// static bool tryConvertToInt(const std::string &s);
-	// static bool tryConvertToFloat(const std::string &s);
-	// static bool tryConvertToDouble(const std::string &s);
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter &copy);
+		ScalarConverter &operator=(const ScalarConverter &ope);
 
-	static void convert(const std::string &literal);
+	public:
+
+		~ScalarConverter();
+
+		static void convert(const std::string &literal);
 };
 
 #endif

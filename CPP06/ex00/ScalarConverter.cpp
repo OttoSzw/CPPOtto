@@ -83,15 +83,17 @@ e_type find_type(const std::string &literal, char *c, int *i, float *f, double *
 	}
 	else if (tryConvertToInt(literal))
 	{
-		*i = std::atoi(literal.c_str());
+		*i = atoi(literal.c_str());
 		return (INT);
 	}
 	else if (tryConvertToFloat(literal))
 	{
+		*f = atof(literal.c_str());
 		return (FLOAT);
 	}
 	else if (tryConvertToDouble(literal))
 	{
+		*d = atof(literal.c_str());
 		return (DOUBLE);
 	}
 	else
@@ -103,10 +105,47 @@ e_type find_type(const std::string &literal, char *c, int *i, float *f, double *
 void	print_convert_types(e_type Type, char c, int i, float f, double d)
 {
 	(void)Type;
-	std::cout << "char : " << c << std::endl;
-	std::cout << "int : " << i << std::endl;
-	std::cout << "float : " << f << std::endl;
-	std::cout << "double : " << d << std::endl;
+	if (Type == CHAR)
+	{
+		std::cout << "char : " << c << std::endl;
+		std::cout << "int : " << static_cast<int>(c) << std::endl;
+		std::cout << "float : " << static_cast<float>(c) << ".0f" << std::endl;
+		std::cout << "double : " << static_cast<double>(c) << ".0" << std::endl;
+	}
+	else if (Type == INT)
+	{
+		if (std::isprint(static_cast<char>(i)) && i >= 0 && i < 127 )
+            std::cout << "char: " << static_cast<char>(i) << std::endl;
+        else
+            std::cout << "char: impossible" << std::endl;
+		std::cout << "int : " << i << std::endl;
+		std::cout << "float : " << static_cast<float>(i) << ".0f" << std::endl;
+		std::cout << "double : " << static_cast<double>(i) << ".0" << std::endl;
+	}
+	else if (Type == FLOAT)
+	{
+		if (std::isprint(static_cast<char>(f)))
+            std::cout << "char: " << static_cast<char>(f) << std::endl;
+        else
+            std::cout << "char: impossible" << std::endl;	
+		std::cout << "int : " << static_cast<int>(f) << std::endl;
+		std::cout << "float : " << f << ".0f" << std::endl;
+		std::cout << "double : " << static_cast<double>(f) << ".0" << std::endl;
+	}
+	else if (Type == DOUBLE)
+	{
+		if (std::isprint(static_cast<char>(d)))
+            std::cout << "char: " << static_cast<char>(d) << std::endl;
+        else
+            std::cout << "char: impossible" << std::endl;	
+		std::cout << "int : " << static_cast<int>(d) << std::endl;
+		std::cout << "double : " << static_cast<float>(d) << ".0f" << std::endl;
+		std::cout << "float : " << d << ".0" << std::endl;
+	}
+	else
+	{
+		return ;
+	}
 }
 
 void ScalarConverter::convert(const std::string &literal)
@@ -122,7 +161,6 @@ void ScalarConverter::convert(const std::string &literal)
 		std::cout << "Impossible conversion !!" << std::endl;
 	else
 	{
-		std::cout << "Type Find : " << Type << std::endl;
+		print_convert_types(Type, c, i, f, d);
 	}
-	print_convert_types(Type, c, i, f, d);
 }
