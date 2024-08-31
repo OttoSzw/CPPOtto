@@ -2,12 +2,16 @@
 #define EASYFIND_HPP
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 template <typename T>
-void	easyfind(T* type, int nb)
+T	easyfind(std::vector<T>& type, int nb)
 {
-	if (std::find(type->begin(), type->end(), nb))
-		return ()
-}
+	typename std::vector<T>::iterator it = std::find(type.begin(), type.end(), nb);
+	if (it != type.end())
+		return (*it);
+	return (0);
+};
 
 #endif
