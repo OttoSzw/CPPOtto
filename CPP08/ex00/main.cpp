@@ -30,6 +30,36 @@ int main()
 		std::cout << "\033[1;31mL'element n'a pas ete trouve dans le vecteur.\033[0m" << std::endl;
 	}
 	std::cout << std::endl;
+
+
+
+	std::vector<char> chara;
+	std::vector<char>::iterator at;
+
+	std::cout << std::endl;
+	for (char i = 97; i <= 122; i++)
+	{
+		chara.push_back(i);
+		std::cout << easyfind(chara, i) << ", ";
+	}
+	std::cout << std::endl;
+
+	char result2 = easyfind(chara, 99);
+
+	std::cout << std::endl;
+	std::cout << "L'element cherche est c ! " << std::endl;
+	if (result2 != 0)
+	{
+		std::cout << "\033[1;32mL'element trouve est : \033[0m" << result2 << std::endl;
+	}
+	else
+	{
+		std::cout << "\033[1;31mL'element n'a pas ete trouve dans le vecteur.\033[0m" << std::endl;
+	}
+	std::cout << std::endl;
+
+
+
 	std::cout << "\033[38;2;255;165;0m Desormais on accede a l element 6 de notre liste (via l'operateur[]) : \033[0m" << std::endl;
 	int	&i = tab[5];
 	std::cout << std::endl;

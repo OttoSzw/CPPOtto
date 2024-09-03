@@ -1,6 +1,6 @@
 {
 	"files.associations": {
-		"algorithm": "cpp",
+		"iostream": "cpp",
 		"array": "cpp",
 		"atomic": "cpp",
 		"bit": "cpp",
@@ -21,6 +21,7 @@
 		"unordered_map": "cpp",
 		"vector": "cpp",
 		"exception": "cpp",
+		"algorithm": "cpp",
 		"functional": "cpp",
 		"iterator": "cpp",
 		"memory": "cpp",
@@ -36,7 +37,6 @@
 		"utility": "cpp",
 		"initializer_list": "cpp",
 		"iosfwd": "cpp",
-		"iostream": "cpp",
 		"istream": "cpp",
 		"limits": "cpp",
 		"new": "cpp",

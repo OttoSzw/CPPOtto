@@ -74,7 +74,7 @@ static bool tryConvertToDouble(const std::string &s)
 	return (true);
 }
 
-e_type find_type(const std::string &literal, char *c, int *i, float *f, double *d)
+e_type find_type(const std::string &literal, char *c, long *i, float *f, double *d)
 {
 	if (literal.length() == 1 && std::isprint(literal[0]))
 	{
@@ -83,7 +83,7 @@ e_type find_type(const std::string &literal, char *c, int *i, float *f, double *
 	}
 	else if (tryConvertToInt(literal))
 	{
-		*i = atoi(literal.c_str());
+		*i = atol(literal.c_str());
 		return (INT);
 	}
 	else if (tryConvertToFloat(literal))
@@ -102,7 +102,7 @@ e_type find_type(const std::string &literal, char *c, int *i, float *f, double *
 	}
 }
 
-void	print_convert_types(e_type Type, char c, int i, float f, double d)
+void	print_convert_types(e_type Type, const std::string &literal, char c, long i, float f, double d)
 {
 	(void)Type;
 	if (Type == CHAR)
@@ -111,6 +111,7 @@ void	print_convert_types(e_type Type, char c, int i, float f, double d)
 		std::cout << "int : " << static_cast<int>(c) << std::endl;
 		std::cout << "float : " << static_cast<float>(c) << ".0f" << std::endl;
 		std::cout << "double : " << static_cast<double>(c) << ".0" << std::endl;
+		return ;
 	}
 	else if (Type == INT)
 	{
@@ -118,19 +119,33 @@ void	print_convert_types(e_type Type, char c, int i, float f, double d)
             std::cout << "char: " << static_cast<char>(i) << std::endl;
         else
             std::cout << "char: impossible" << std::endl;
-		std::cout << "int : " << i << std::endl;
-		std::cout << "float : " << static_cast<float>(i) << ".0f" << std::endl;
-		std::cout << "double : " << static_cast<double>(i) << ".0" << std::endl;
+		if (i >= INT_MIN && i <= INT_MAX)
+		{
+			std::cout << "int : " << i << std::endl;
+			std::cout << "float : " << static_cast<float>(i) << ".0f" << std::endl;
+			std::cout << "double : " << static_cast<double>(i) << ".0" << std::endl;
+		}
+        else
+		{
+            std::cout << "int : impossible" << std::endl;
+			std::cout << "float : " << atof(literal.c_str()) << ".0f" << std::endl;
+			std::cout << "double : " << atof(literal.c_str()) << ".0" << std::endl;
+		}
+		return ;
 	}
 	else if (Type == FLOAT)
 	{
 		if (std::isprint(static_cast<char>(f)))
             std::cout << "char: " << static_cast<char>(f) << std::endl;
         else
-            std::cout << "char: impossible" << std::endl;	
-		std::cout << "int : " << static_cast<int>(f) << std::endl;
-		std::cout << "float : " << f << ".0f" << std::endl;
-		std::cout << "double : " << static_cast<double>(f) << ".0" << std::endl;
+            std::cout << "char: impossible" << std::endl;
+		if (i >= INT_MIN && i <= INT_MAX)
+			std::cout << "int : " << static_cast<int>(f) << std::endl;
+		else
+            std::cout << "int : impossible" << std::endl;
+		std::cout << "float : " << f << "f" << std::endl;
+		std::cout << "double : " << static_cast<double>(f) << std::endl;
+		return ;
 	}
 	else if (Type == DOUBLE)
 	{
@@ -138,29 +153,47 @@ void	print_convert_types(e_type Type, char c, int i, float f, double d)
             std::cout << "char: " << static_cast<char>(d) << std::endl;
         else
             std::cout << "char: impossible" << std::endl;	
-		std::cout << "int : " << static_cast<int>(d) << std::endl;
-		std::cout << "double : " << static_cast<float>(d) << ".0f" << std::endl;
-		std::cout << "float : " << d << ".0" << std::endl;
-	}
-	else
-	{
+		if (i >= INT_MIN && i <= INT_MAX)
+			std::cout << "int : " << static_cast<int>(d) << std::endl;
+		else
+            std::cout << "int : impossible" << std::endl;
+		std::cout << "double : " << static_cast<float>(d) << "f" << std::endl;
+		std::cout << "float : " << d << std::endl;
 		return ;
 	}
+	std::string pseudo[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+	for (int i = 0; i < 6; i++)
+	{
+		if (literal == pseudo[i])
+		{
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int : impossible" << std::endl;
+            if (i < 3)
+			{
+				std::cout << "float: " << literal << std::endl;
+				std::cout << "double: " << pseudo[i + 3] << std::endl;
+			}
+			else
+			{
+				std::cout << "float: " << pseudo[i - 3] << std::endl;
+				std::cout << "double: " << literal << std::endl;
+			}
+			return ;
+		}
+	}
+	std::cout << "Error input : not a char, an int, a float or a double" << std::endl;
+	return ;
+	
 }
 
 void ScalarConverter::convert(const std::string &literal)
 {
 	char c = '\0';
-	int i = 0;
+	long i = 0;
 	float f = 0;
 	double d = 0;
 	e_type Type = NONE;
 
 	Type = find_type(literal, &c, &i, &f, &d);
-	if (Type == NONE)
-		std::cout << "Impossible conversion !!" << std::endl;
-	else
-	{
-		print_convert_types(Type, c, i, f, d);
-	}
+	print_convert_types(Type, literal, c, i, f, d);
 }
