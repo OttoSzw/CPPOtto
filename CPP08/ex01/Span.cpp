@@ -37,6 +37,12 @@ void	Span::addNumber(int n)
 	}
 }
 
+void	Span::addMany(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	for (std::vector<int>::iterator it = begin; it != end; it++)
+		addNumber(*it);
+}
+
 int	Span::getStock(int i) const
 {
 	if (stock.empty() || stock.size() == 1)

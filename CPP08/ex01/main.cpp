@@ -2,7 +2,7 @@
 
 int main()
 {
-	Span Instance(4);
+	Span Instance(8);
 
 	try
 	{
@@ -10,13 +10,25 @@ int main()
 		Instance.addNumber(80);
 		Instance.addNumber(6);
 		Instance.addNumber(14);
+
+		std::cout << "Shortest : " << Instance.shortestSpan()<< std::endl;
+		std::cout << "Longest : " << Instance.longestSpan()<< std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+
+	try
+	{
+		std::vector<int> test;
+		for (int i = 0; i < 4; i++)
+			test.push_back(i);
+		Instance.addMany(test.begin(), test.end());
 		for (int i = 0; i < static_cast<int>(Instance.getSize()); i++)
 		{
 			std::cout << i + 1 << "- " << Instance.getStock(i) << std::endl;
 		}
-
-		std::cout << "Shortest : " << Instance.shortestSpan()<< std::endl;
-		std::cout << "Longest : " << Instance.longestSpan()<< std::endl;
 	}
 	catch(const std::exception& e)
 	{
