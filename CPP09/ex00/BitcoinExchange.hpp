@@ -4,6 +4,8 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <algorithm>
+#include <string>
 
 class BitcoinExchange 
 {
@@ -12,11 +14,7 @@ class BitcoinExchange
 
 		std::string key;
 		std::string value;
-		std::map<std::string, std::string> db;
-	
-
-
-
+		std::map<std::string, double> db;
 };
 
 #endif

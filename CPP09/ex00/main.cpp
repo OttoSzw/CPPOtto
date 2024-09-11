@@ -22,10 +22,13 @@ int main(int ac, char **av)
 		getline(fichier, line);
 		while (getline(fichier, line))
 		{
-			Instance.key = line()
-			int size_t position = line.find("")
+			size_t position = line.find(",");
 			std::cout << line << std::endl;
-
+			Instance.key = line.substr(0, position);
+			std::cout << "Key :       " << Instance.key << std::endl;
+			Instance.value = stod(line.substr(position + 1, line.size()));
+			std::cout << "Value :       " << Instance.value << std::endl;
+			Instance.db[Instance.key] = Instance.value;
 		}
 		fichier.close();
 	}
