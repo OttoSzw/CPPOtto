@@ -16,7 +16,7 @@ BitcoinExchange::BitcoinExchange()
 		{
 			size_t position = line.find(",");
 			this->key = line.substr(0, position);
-			this->value = line.substr(position + 1, line.size());
+			this->value = atof((line.substr(position + 1, line.size())).c_str());
 			this->db[this->key] = this->value;
 		}
 
@@ -75,17 +75,8 @@ void	BitcoinExchange::OttoFaisTout(std::ifstream& fichier)
 		std::cout << "\033[0m";
 		std::string line;
 		std::string cle;
-		std::map<std::string, std::string> Tc;
-		std::string valeur;
-
-		getline(fichier, line);
-		while (getline(fichier, line))
-		{
-			size_t position = line.find("|");
-			cle = line.substr(0, position);
-			valeur = line.substr(position + 1, line.size());
-			Tc[cle] = valeur;
-		}
+		std::map<std::string, double> Tc;
+		double valeur;
 
 		std::cout << std::endl;
 		std::cout << "  - Cle : ";
@@ -101,8 +92,79 @@ void	BitcoinExchange::OttoFaisTout(std::ifstream& fichier)
 		std::cout << "[Ready]";
 		std::cout << "\033[0m" << std::endl;
 		std::cout << std::endl;
-		fichier.close();
-
 		
+		getline(fichier, line);
+		while (getline(fichier, line))
+		{
+			if (line.size() == 0)
+				std::cout << "Error: Empty line" << std::endl;
+			else
+			{
+				size_t position = line.find(" | ");
+				cle = line.substr(0, position);
+				valeur = atof((line.substr(position + 3, line.size())).c_str());
+				Tc[cle] = valeur;
+				int flag = OnCheckCaEnBienn(cle, valeur);
+				if (db.find(cle) != db.end() && flag != 1)
+				{
+					double result;
 
+					result = Tc[cle] * db[cle];
+					std::cout << cle << " => " << Tc[cle] << " = " << result << std::endl;
+				}
+				else if (flag != 1)
+				{
+					std::string nearestDate = FindNearest(db, cle);
+					double result;
+					result = Tc[cle] * db[nearestDate];
+					std::cout << cle << " => " << Tc[cle] << " = " << result << std::endl;
+				}
+			}
+		}
+		fichier.close();
+}
+
+int	BitcoinExchange::OnCheckCaEnBienn(std::string date, double value)
+{
+	double year;
+	double month;
+	double day;
+
+	year = atof((date.substr(0, 4)).c_str());
+	month = atof((date.substr(5, 7)).c_str());
+	day = atof((date.substr(8, 10)).c_str());
+
+	if (year > 2022 || year < 2009)
+	{
+		std::cout << "Error: bad input: Not valid year for bitcoin." << std::endl;
+		return (1);
+	}
+	else if ((month > 12 ||  month < 1) || (day > 31 || day < 1))
+	{
+		std::cout << "Error: Not a valid month|day." << std::endl;
+		return (1);
+	}
+	else if (value > 1000)
+	{
+		std::cout << "Error: Too large number." << std::endl;
+		return (1);
+	}
+	else if (value < 0)
+	{
+		std::cout << "Error: Not a positive number." << std::endl;
+		return (1);
+	}
+	return (0);
+}
+
+std::string BitcoinExchange::FindNearest(std::map<std::string, double> map, std::string date)
+{
+	std::map<std::string, double>::reverse_iterator it = map.rbegin();
+	while (it != map.rend())
+	{
+        if (strcmp(it->first.c_str(), date.c_str()) <= 0)
+			return (it->first);
+		++it;
+	}
+	return (NULL);
 }
