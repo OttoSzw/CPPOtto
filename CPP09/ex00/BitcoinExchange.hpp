@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cstring>
+#include <cctype>
 
 
 class CantOpen : public std::runtime_error
