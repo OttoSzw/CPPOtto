@@ -2,13 +2,14 @@
 
 int main(int ac, char **av)
 {
-	try
-	{
-		PmergeMe Instance(av);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	return (0);
+    if (ac < 3)
+    {
+        return (1);
+    }
+
+    PmergeMe Instance;
+
+    Instance.InitialiseContainer(++av);
+    Instance.Algo();
+    return (0);
 }
